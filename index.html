@@ -104,6 +104,7 @@
     const kittyContainer=document.getElementById('kittyContainer');
     const bgMusic=document.getElementById('bgMusic');
     const heart=document.getElementById('mainHeart');
+    let check = False;
 
     function rand(min,max){return Math.random()*(max-min)+min}
     function createFloatHeart(){
@@ -136,7 +137,10 @@
       document.body.style.animation='bgPulse 1.5s infinite';
     }
 
-    playBtn.onclick=()=>trigger();
+    if (check==False) {
+      playBtn.onclick=()=>trigger();
+      check = True;
+    }
     replayBtn.onclick=()=>trigger();
   </script>
 </body>
