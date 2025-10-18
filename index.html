@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tặng em — Trần Anh Thư</title>
+  <style>
+    :root{
+      --bg1:#fff0f6; --bg2:#ffe6f0;
+      --accent:#ff69b4; --accent-2:#ffb6c1;
+      --ribbon:#ff99cc; --ribbon-dark:#ff5ca0;
+    }
+    html,body{height:100%;margin:0;font-family:'Comic Sans MS', cursive, sans-serif;}
+    body{
+      background: radial-gradient(900px 500px at 10% 20%, rgba(255,105,180,0.08), transparent),
+                  radial-gradient(800px 400px at 90% 80%, rgba(255,182,193,0.05), transparent),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;color:#d63384;overflow:hidden;padding:32px;
+    }
+    .card{
+      width:900px;max-width:100%;background:rgba(255,255,255,0.5);
+      border-radius:20px;padding:36px;box-shadow:0 10px 40px rgba(255,105,180,0.3);backdrop-filter: blur(8px);
+      display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:center;border:2px solid var(--accent);
+    }
+    h1{margin:0 0 8px;font-size:30px;letter-spacing:0.2px;color:#ff1493;text-shadow:0 0 6px #fff}
+    p.lead{margin:0 0 18px;color:#c2185b}
+    .message{margin-top:10px;font-size:17px;color:#ff4081;font-style:italic;text-shadow:0 0 6px #fff;animation:glowText 3s ease-in-out infinite alternate;}
+
+    @keyframes glowText {
+      0% {text-shadow: 0 0 6px #fff, 0 0 10px #ff69b4, 0 0 20px #ff1493; transform: scale(1);}
+      50% {text-shadow: 0 0 12px #fff, 0 0 22px #ff69b4, 0 0 35px #ff1493; transform: scale(1.02);}
+      100% {text-shadow: 0 0 6px #fff, 0 0 10px #ff69b4, 0 0 20px #ff1493; transform: scale(1);}
+    }
+
+    button{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;padding:12px 16px;border-radius:12px;color:white;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(255,92,138,0.25);}
+    button.ghost{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+
+    .stage{position:relative;height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .heart-shape{position:relative;width:140px;height:140px;transform:rotate(-45deg);animation:beat 1s infinite ease-in-out;}
+    .heart-shape::before,.heart-shape::after{content:"";position:absolute;width:100%;height:100%;border-radius:50%;background:linear-gradient(180deg,var(--accent),var(--accent-2));}
+    .heart-shape::before{top:-50%}
+    .heart-shape::after{left:50%}
+
+    @keyframes beat {
+      0%,100% {transform: rotate(-45deg) scale(1);filter:brightness(1);}
+      50% {transform: rotate(-45deg) scale(1.2);filter:brightness(1.3);}
+    }
+
+    .kitty{position:absolute;width:100px;height:100px;background:url('https://upload.wikimedia.org/wikipedia/en/0/0b/Hello_Kitty_Character.png') no-repeat center/contain;animation:kittyFloat 8s linear infinite;z-index:4;opacity:0.9;}
+    @keyframes kittyFloat {
+      0% {transform: translate3d(-100px, 0, 0) rotate(10deg);}
+      25% {transform: translate3d(200px, -50px, 0) rotate(-10deg);}
+      50% {transform: translate3d(400px, 30px, 0) rotate(10deg);}
+      75% {transform: translate3d(200px, -80px, 0) rotate(-10deg);}
+      100% {transform: translate3d(-100px, 0, 0) rotate(10deg);}
+    }
+
+    .ribbon{position:absolute;width:40px;height:40px;background:radial-gradient(circle at 30% 30%, var(--ribbon), var(--ribbon-dark));border-radius:50%;animation:spin 3s linear infinite;}
+    @keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+
+    .ribbon::before,.ribbon::after{content:"";position:absolute;width:30px;height:30px;background:inherit;border-radius:50%;}
+    .ribbon::before{left:-25px;top:5px}
+    .ribbon::after{right:-25px;top:5px}
+
+    .float-heart{position:absolute;width:22px;height:22px;pointer-events:none;transform:rotate(-45deg);}
+    .float-heart .h{position:absolute;width:100%;height:100%;border-radius:50%;background:var(--accent);}
+    .float-heart .h::before,.float-heart .h::after{content:"";position:absolute;width:100%;height:100%;border-radius:50%;background:inherit}
+    .float-heart .h::before{top:-50%}
+    .float-heart .h::after{left:50%}
+
+    @keyframes bgPulse {
+      0%,100% {background-color:rgba(255,192,203,0.2);}
+      50% {background-color:rgba(255,182,193,0.6);}
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic">
+    <source src="Nơi Này Có Anh - Sơn Tùng M-TP.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="card">
+    <div>
+      <h1>Tặng em — Trần Anh Thư 💕</h1>
+      <p class="lead">Hãy nhấn <b>Gửi trái tim</b> để cảm nhận về anh 💖</p>
+      <p class="message">Chúc em 20/10 thật vui vẻ, luôn xinh đẹp, FTU/HNUE thẳng tiếnnnnnnnnnnn! 💐</p>
+      <button id="playBtn">Gửi trái tim 💖</button>
+      <button id="replayBtn" class="ghost">Phát lại</button>
+    </div>
+
+    <div class="stage">
+      <div class="heart-shape" id="mainHeart"></div>
+      <div id="kittyContainer"></div>
+      <div class="ribbon" style="top:10%;left:60%"></div>
+      <div class="ribbon" style="bottom:15%;right:20%"></div>
+      <div id="floatContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const playBtn=document.getElementById('playBtn');
+    const replayBtn=document.getElementById('replayBtn');
+    const floatContainer=document.getElementById('floatContainer');
+    const kittyContainer=document.getElementById('kittyContainer');
+    const bgMusic=document.getElementById('bgMusic');
+    const heart=document.getElementById('mainHeart');
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+    function createFloatHeart(){
+      const el=document.createElement('div');el.className='float-heart';const h=document.createElement('div');h.className='h';el.appendChild(h);
+      el.style.left=rand(20,80)+'%';el.style.top='80%';floatContainer.appendChild(el);
+      const size=rand(15,30);el.style.width=size+'px';el.style.height=size+'px';
+      const duration=rand(3000,5000);
+      el.animate([
+        {transform:'translateY(0)',opacity:1},
+        {transform:`translateY(-${rand(250,400)}px)`,opacity:0}
+      ],{duration,easing:'ease-out',iterations:1});
+      setTimeout(()=>el.remove(),duration);
+    }
+
+    function createKitty(){
+      const kitty=document.createElement('div');
+      kitty.className='kitty';
+      kitty.style.top=rand(10,80)+'%';
+      kitty.style.left='-120px';
+      kittyContainer.appendChild(kitty);
+      setTimeout(()=>kitty.remove(),8000);
+    }
+
+    function trigger(){
+      for(let i=0;i<25;i++)createFloatHeart();
+      for(let i=0;i<5;i++)setTimeout(createKitty,i*1500);
+      bgMusic.currentTime=0;
+      bgMusic.play().catch(()=>alert('Bấm vào trang để bật nhạc nhé!'));
+      heart.style.animation='beat 1s infinite ease-in-out';
+      document.body.style.animation='bgPulse 1.5s infinite';
+    }
+
+    playBtn.onclick=()=>trigger();
+    replayBtn.onclick=()=>trigger();
+  </script>
+</body>
+</html>
